@@ -19,7 +19,7 @@ from cv_bridge import CvBridgeError
  
 rgb_path = '/home/klee698/rosbag_ws/src/rosbag_to_csv/bags/'
 
-bag_name = "2019-08-23-09-40-01"
+bag_name = "2019-08-23-11-56-39"
 
 class ImageCreator():
     def __init__(self, bag_name):
