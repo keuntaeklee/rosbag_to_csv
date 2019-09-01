@@ -17,9 +17,9 @@ from cv_bridge import CvBridgeError
 #import os
 #import sys
  
-rgb_path = '/home/klee698/rosbag_ws/src/rosbag_to_csv/bags/'
+rgb_path = '/home/klee698/flightgoggles_bags/'
 
-bag_name = "2019-08-23-12-31-08"
+# bag_name = "2019-08-23-12-31-08"
 
 class ImageCreator():
     def __init__(self, bag_name):
@@ -41,10 +41,15 @@ class ImageCreator():
                     i += 1
 
 if __name__ == '__main__':
-    os.mkdir(rgb_path + bag_name)
-    os.mkdir(rgb_path + bag_name + "/seq")
-    os.mkdir(rgb_path + bag_name + "/timestamp")
-    try:
-        image_creator = ImageCreator(bag_name)
-    except rospy.ROSInterruptException:
-        pass
+    files = os.listdir(rgb_path)
+    for bag_fullname in files:
+        if bag_fullname.endswith('.bag'):
+            bag_name = bag_fullname.split(".")[0]
+            print(bag_name)
+            os.mkdir(rgb_path + bag_name)
+            os.mkdir(rgb_path + bag_name + "/seq")
+            os.mkdir(rgb_path + bag_name + "/timestamp")
+            try:
+                image_creator = ImageCreator(bag_name)
+            except rospy.ROSInterruptException:
+                pass
